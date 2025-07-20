@@ -193,7 +193,7 @@ pygame.time.set_timer(SCREEN_UPDATE,150)
 MENU = 0
 PLAYING = 1
 GAME_OVER = 2
-TOP_SCORES = 3  # New state for top scores screen
+TOP_SCORES = 3 
 ENTER_NAME = 4
 username = ""
 game_state = MENU
@@ -316,7 +316,7 @@ while True:
         title_rect = title_surf.get_rect(center=(cell_size*cell_number//2, cell_size*cell_number//2 - 120))
         screen.blit(title_surf, title_rect)
         for i, (name, score) in enumerate(top_scores):
-            score_surf = game_font.render(f"{i+1}. {name}: {score}", True, (200,200,30))
+            score_surf = game_font.render(f"{i+1}. {name}: {score}", True, (56,74,12))
             score_rect = score_surf.get_rect(center=(cell_size*cell_number//2, cell_size*cell_number//2 - 30 + i*40))
             screen.blit(score_surf, score_rect)
         back_menu_button = pygame.Rect(cell_size*cell_number//2 - 150, cell_size*cell_number//2 + 100, 300, 70)
