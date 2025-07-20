@@ -177,24 +177,24 @@ class MAIN:
 		screen.blit(apple,apple_rect)
 		pygame.draw.rect(screen,(56,74,12),bg_rect,2)
 
-	# Button helpers
-	def draw_button(rect, text):
-		pygame.draw.rect(screen, (100, 200, 100), rect)
-		pygame.draw.rect(screen, (56,74,12), rect, 3)
-		lines = text.split('\n')
-		total_height = sum(game_font.size(line)[1] for line in lines)
-		y_offset = rect.centery - total_height // 2
-		for line in lines:
-			text_surf = game_font.render(line, True, (56,74,12))
-			text_rect = text_surf.get_rect(center=(rect.centerx, y_offset + text_surf.get_height() // 2))
-			screen.blit(text_surf, text_rect)
-			y_offset += text_surf.get_height()
+# Button helpers
+def draw_button(rect, text):
+	pygame.draw.rect(screen, (100, 200, 100), rect)
+	pygame.draw.rect(screen, (56,74,12), rect, 3)
+	lines = text.split('\n')
+	total_height = sum(game_font.size(line)[1] for line in lines)
+	y_offset = rect.centery - total_height // 2
+	for line in lines:
+		text_surf = game_font.render(line, True, (56,74,12))
+		text_rect = text_surf.get_rect(center=(rect.centerx, y_offset + text_surf.get_height() // 2))
+		screen.blit(text_surf, text_rect)
+		y_offset += text_surf.get_height()
 
-	# Function to check if the score qualifies for top 3
-	def qualifies_top3(score):
-		if len(top_scores) < 3:
-			return True
-		return score > min(s for _, s in top_scores)
+# Function to check if the score qualifies for top 3
+def qualifies_top3(score):
+	if len(top_scores) < 3:
+		return True
+	return score > min(s for _, s in top_scores)
 
 pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init()
@@ -208,7 +208,7 @@ game_font = pygame.font.Font('Font/PoetsenOne-Regular.ttf', 25)
 SCREEN_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(SCREEN_UPDATE,150)
 
-# Add game state management
+# Game states
 MENU = 0
 PLAYING = 1
 GAME_OVER = 2
