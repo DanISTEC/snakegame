@@ -215,6 +215,12 @@ def draw_button(rect, text):
         screen.blit(text_surf, text_rect)
         y_offset += text_surf.get_height()
 
+# Function to check if the score qualifies for top 3
+def qualifies_top3(score):
+    if len(top_scores) < 3:
+        return True
+    return score > min(s for _, s in top_scores)
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -252,9 +258,8 @@ while True:
                     game_state = PLAYING
                 elif back_menu_button.collidepoint(mx, my):
                     game_state = MENU
-            # Instead of adding to top_scores here, transition to ENTER_NAME
-            # Only transition if not already in ENTER_NAME (prevents repeated triggers)
-            if game_state == GAME_OVER:
+            # Only transition to ENTER_NAME if the score qualifies for top 3
+            if game_state == GAME_OVER and qualifies_top3(final_score):
                 game_state = ENTER_NAME
                 username = ""
         elif game_state == TOP_SCORES:
