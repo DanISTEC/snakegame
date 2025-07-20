@@ -179,7 +179,7 @@ class MAIN:
 
 pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init()
-cell_size = 30
+cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size,cell_number * cell_size))
 clock = pygame.time.Clock()
@@ -296,7 +296,7 @@ while True:
         screen.blit(title_surf, title_rect)
         start_button = pygame.Rect(cell_size*cell_number//2 - 150, cell_size*cell_number//2 - 40, 300, 70)
         top3_button = pygame.Rect(cell_size*cell_number//2 - 150, cell_size*cell_number//2 + 50, 300, 70)
-        draw_button(start_button, "Start")
+        draw_button(start_button, "Play")
         draw_button(top3_button, "Leaderboard")
     elif game_state == GAME_OVER:
         # Draw game over screen, but do not add to top_scores here
